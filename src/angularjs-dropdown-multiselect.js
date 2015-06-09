@@ -39,7 +39,7 @@ directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$co
                 template += '<a role="menuitem" tabindex="-1" ng-click="setSelectedItem(getPropertyForObject(option,settings.idProp))">';
 
                 if (checkboxes) {
-                    template += '<div class="checkbox"><label><input class="checkboxInput" type="checkbox" ng-click="checkboxClick($event, getPropertyForObject(option,settings.idProp))" ng-checked="isChecked(getPropertyForObject(option,settings.idProp))" /> {{getPropertyForObject(option, settings.displayProp)}}</label></div></a>';
+                    template += '<div class="checkbox"><input type="checkbox" id="snippets-forms-controls-checkbox-checked" ng-click="checkboxClick($event, getPropertyForObject(option,settings.idProp))" ng-checked="isChecked(getPropertyForObject(option,settings.idProp))"><label for="snippets-forms-controls-checkbox-checked">{{getPropertyForObject(option, settings.displayProp)}}</label></div>';
                 } else {
                     template += '<span data-ng-class="{\'glyphicon glyphicon-ok\': isChecked(getPropertyForObject(option,settings.idProp))}"></span> {{getPropertyForObject(option, settings.displayProp)}}</a>';
                 }
@@ -56,7 +56,7 @@ directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$co
             },
             link: function ($scope, $element, $attrs) {
                 var $dropdownTrigger = $element.children()[0];
-                
+
                 $scope.toggleDropdown = function () {
                     $scope.open = !$scope.open;
                 };
@@ -261,7 +261,6 @@ directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$co
                         clearObject($scope.selectedModel);
                         angular.extend($scope.selectedModel, finalObj);
                         $scope.externalEvents.onItemSelect(finalObj);
-                        if ($scope.settings.closeOnSelect) $scope.open = false;
 
                         return;
                     }
@@ -277,7 +276,6 @@ directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$co
                         $scope.selectedModel.push(finalObj);
                         $scope.externalEvents.onItemSelect(finalObj);
                     }
-                    if ($scope.settings.closeOnSelect) $scope.open = false;
                 };
 
                 $scope.isChecked = function (id) {
@@ -291,4 +289,4 @@ directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$co
                 $scope.externalEvents.onInitDone();
             }
         };
-}]);
+    }]);
