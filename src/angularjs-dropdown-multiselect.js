@@ -103,7 +103,8 @@ directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$co
                     selectionOf: '/',
                     searchPlaceholder: 'Search...',
                     buttonDefaultText: 'Select',
-                    dynamicButtonTextSuffix: 'checked'
+                    dynamicButtonTextSuffix: 'checked',
+                    allSelectedText: 'All items are selected'
                 };
 
                 $scope.searchFilter = $scope.searchFilter || '';
@@ -178,6 +179,12 @@ directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$co
 
                 $scope.getButtonText = function () {
                     if ($scope.settings.dynamicTitle && ($scope.selectedModel.length > 0 || (angular.isObject($scope.selectedModel) && _.keys($scope.selectedModel).length > 0))) {
+
+                        // Show special text if all items are selected
+                        if ($scope.selectedModel.length > 0 && $scope.selectedModel.length === $scope.options.length) {
+                            return $scope.texts.allSelectedText + " (" + $scope.options.length + ")";
+                        }
+
                         if ($scope.settings.smartButtonMaxItems > 0) {
                             var itemsText = [];
 
