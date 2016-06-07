@@ -4,14 +4,14 @@ angular.module('exampleApp').controller('ExampleCtrl', ['$scope', function($scop
 	$scope.example1model = [];
 	$scope.example1data = [
 		{id: 1, label: "David"},
-		{id: 2, label: "Jhon"},
+		{id: 2, label: "John"},
 		{id: 3, label: "Danny"}];
 
 
 	$scope.example2model = [];
 	$scope.example2data = [
 		{id: 1, label: "David"},
-		{id: 2, label: "Jhon"},
+		{id: 2, label: "John"},
 		{id: 3, label: "Danny"}];
 	$scope.example2settings = {displayProp: 'id'};
 
@@ -19,7 +19,7 @@ angular.module('exampleApp').controller('ExampleCtrl', ['$scope', function($scop
 	$scope.example3model = [];
 	$scope.example3data = [
 		{id: 1, label: "David"},
-		{id: 2, label: "Jhon"},
+		{id: 2, label: "John"},
 		{id: 3, label: "Danny"},
 		{id: 4, label: "Danny"}];
 	$scope.example3settings = {displayProp: 'label', idProp: 'label'};
@@ -27,49 +27,52 @@ angular.module('exampleApp').controller('ExampleCtrl', ['$scope', function($scop
 	$scope.example4model = [];
 	$scope.example4data = [
 		{id: 1, label: "David"},
-		{id: 2, label: "Jhon"},
+		{id: 2, label: "John"},
 		{id: 3, label: "Danny"}];
 	$scope.example4settings = {displayProp: 'label', idProp: 'id', externalIdProp: 'myCustomPropertyForTheObject'};
 
 	$scope.example5model = [];
 	$scope.example5data = [
 		{id: 1, label: "David"},
-		{id: 2, label: "Jhon"},
+		{id: 2, label: "John"},
 		{id: 3, label: "Danny"}];
 	$scope.example5settings = {};
-    $scope.example5customTexts = {buttonDefaultText: 'Select Users'};
+	$scope.example5customTexts = {
+		buttonDefaultText: '<span class="glyphicon glyphicon-user"></span> Select <em>Users</em>',
+		uncheckAll: '<span class="glyphicon glyphicon-trash"></span> <strong>Uncheck</strong> all'
+	};
 
 	$scope.example6model = [{id: 1}, {id: 3}];
 	$scope.example6data = [
 		{id: 1, label: "David"},
-		{id: 2, label: "Jhon"},
+		{id: 2, label: "John"},
 		{id: 3, label: "Danny"}];
 	$scope.example6settings = {};
 
 	$scope.example7model = [];
 	$scope.example7data = [
 		{id: 1, label: "David"},
-		{id: 2, label: "Jhon"},
+		{id: 2, label: "John"},
 		{id: 3, label: "Danny"}];
 	$scope.example7settings = {externalIdProp: ''};
 
 	$scope.example8model = [];
 	$scope.example8data = [
 		{id: 1, label: "David"},
-		{id: 2, label: "Jhon"},
+		{id: 2, label: "John"},
 		{id: 3, label: "Danny"}];
 
 	$scope.example9model = [];
 	$scope.example9data = [
 		{id: 1, label: "David"},
-		{id: 2, label: "Jhon"},
+		{id: 2, label: "John"},
 		{id: 3, label: "Danny"}];
 	$scope.example9settings = {enableSearch: true};
 
 	$scope.example10model = [];
 	$scope.example10data = [
 		{id: 1, label: "David"},
-		{id: 2, label: "Jhon"},
+		{id: 2, label: "John"},
 		{id: 3, label: "Danny"}];
 
 	$scope.example10settings = {selectionLimit: 2};
@@ -77,7 +80,7 @@ angular.module('exampleApp').controller('ExampleCtrl', ['$scope', function($scop
 	$scope.example12model = {};
 	$scope.example12data = [
 		{id: 1, label: "David"},
-		{id: 2, label: "Jhon"},
+		{id: 2, label: "John"},
 		{id: 3, label: "Danny"}];
 
     $scope.example12settings = {selectionLimit: 1};
@@ -86,7 +89,7 @@ angular.module('exampleApp').controller('ExampleCtrl', ['$scope', function($scop
 	$scope.example11model = [];
 	$scope.example11data = [
 		{id: 1, label: "David", gender: 'M'},
-		{id: 2, label: "Jhon", gender: 'M'},
+		{id: 2, label: "John", gender: 'M'},
 		{id: 3, label: "Lisa", gender: 'F'},
 		{id: 4, label: "Nicole", gender: 'F'},
 		{id: 5, label: "Danny", gender: 'M'}];
@@ -108,7 +111,7 @@ angular.module('exampleApp').controller('ExampleCtrl', ['$scope', function($scop
     $scope.example13model = [];
     $scope.example13data = [
         {id: 1, label: "David"},
-        {id: 2, label: "Jhon"},
+        {id: 2, label: "John"},
         {id: 3, label: "Lisa"},
         {id: 4, label: "Nicole"},
         {id: 5, label: "Danny"}];
@@ -116,8 +119,8 @@ angular.module('exampleApp').controller('ExampleCtrl', ['$scope', function($scop
     $scope.example13settings = {
         smartButtonMaxItems: 3,
         smartButtonTextConverter: function(itemText, originalItem) {
-            if (itemText === 'Jhon') {
-                return 'Jhonny!';
+            if (itemText === 'John') {
+                return 'Johnny!';
             }
 
             return itemText;
@@ -127,7 +130,7 @@ angular.module('exampleApp').controller('ExampleCtrl', ['$scope', function($scop
     $scope.example14model = [];
     $scope.example14data = [
         {id: 1, label: "David"},
-        {id: 2, label: "Jhon"},
+        {id: 2, label: "John"},
         {id: 3, label: "Lisa"},
         {id: 4, label: "Nicole"},
         {id: 5, label: "Danny"},
@@ -145,7 +148,7 @@ angular.module('exampleApp').controller('ExampleCtrl', ['$scope', function($scop
     $scope.example15model = [];
     $scope.example15data = [
         {id: 1, label: "David"},
-        {id: 2, label: "Jhon"},
+        {id: 2, label: "John"},
         {id: 3, label: "Lisa"},
         {id: 4, label: "Nicole"},
         {id: 5, label: "Danny"}];

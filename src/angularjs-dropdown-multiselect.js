@@ -2,8 +2,8 @@
 
 var directiveModule = angular.module('angularjs-dropdown-multiselect', []);
 
-directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$compile', '$parse',
-    function ($filter, $document, $compile, $parse) {
+directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$sce',
+    function ($filter, $document, $sce) {
 
         return {
             restrict: 'AE',
@@ -21,10 +21,10 @@ directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$co
                 var groups = attrs.groupBy ? true : false;
 
                 var template = '<div class="multiselect-parent btn-group dropdown-multiselect" ng-class="{\'multiselect-no-selection\': selectedModel.length === 0}">';
-                template += '<button type="button" class="dropdown-toggle" ng-class="settings.buttonClasses" ng-click="toggleDropdown()">{{getButtonText()}}&nbsp;<span class="caret"></span></button>';
+                template += '<button type="button" class="dropdown-toggle" ng-class="settings.buttonClasses" ng-click="toggleDropdown()"><span ng-bind-html="safeHtml(getButtonText())"></span>&nbsp;<span class="caret"></span></button>';
                 template += '<ul class="dropdown-menu dropdown-menu-form" ng-if="open" ng-style="{height : settings.scrollable ? settings.scrollableHeight : \'auto\' }" style="overflow: scroll; display: block;" >';
-                template += '<li class="check-all" ng-hide="!settings.showCheckAll || settings.selectionLimit > 0"><a data-ng-click="selectAll()"><span ng-bind-html="texts.checkAll"></span></a>';
-                template += '<li class="uncheck-all" ng-show="settings.showUncheckAll"><a data-ng-click="deselectAll();"><span ng-bind-html="texts.uncheckAll"></span></a></li>';
+                template += '<li class="check-all" ng-hide="!settings.showCheckAll || settings.selectionLimit > 0"><a data-ng-click="selectAll()"><span ng-bind-html="safeHtml(texts.checkAll)"></span></a>';
+                template += '<li class="uncheck-all" ng-show="settings.showUncheckAll"><a data-ng-click="deselectAll();"><span ng-bind-html="safeHtml(texts.uncheckAll)"></span></a></li>';
                 template += '<li ng-hide="(!settings.showCheckAll || settings.selectionLimit > 0) && !settings.showUncheckAll" class="divider"></li>';
                 template += '<li ng-show="settings.enableSearch"><div class="dropdown-header"><input type="text" class="form-control" style="width: 100%;" ng-model="searchFilter" placeholder="{{texts.searchPlaceholder}}" /></li>';
                 template += '<li ng-show="settings.enableSearch" class="divider"></li>';
@@ -97,8 +97,8 @@ directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$co
                 };
 
                 $scope.texts = {
-                    checkAll: 'Check All',
-                    uncheckAll: 'Uncheck All',
+                    checkAll: '<span class="glyphicon glyphicon-ok"></span> Check All',
+                    uncheckAll: '<span class="glyphicon glyphicon-remove"></span> Uncheck All',
                     selectionCount: 'checked',
                     selectionOf: '/',
                     searchPlaceholder: 'Search...',
@@ -293,6 +293,10 @@ directiveModule.directive('ngDropdownMultiselect', ['$filter', '$document', '$co
                     }
 
                     return _.findIndex($scope.selectedModel, getFindObj(id)) !== -1;
+                };
+
+                $scope.safeHtml = function (html) {
+                    return $sce.trustAsHtml(html);
                 };
 
                 $scope.externalEvents.onInitDone();
